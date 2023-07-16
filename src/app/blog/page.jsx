@@ -3,10 +3,7 @@ import axios from 'axios'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
-export const metadata = {
-  title: 'Articls',
-  description: 'blog for articals',
-}
+
 
 
 const Blog = () => {
