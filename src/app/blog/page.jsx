@@ -8,15 +8,13 @@ import React, { useEffect, useState } from 'react'
 
 const Blog = () => {
   const [posts , setposts] = useState()
-  const [user , setuser] = useState()
-  useEffect(_=> {setuser(JSON.parse(localStorage?.getItem("blog")))},[])
-  
+
   useEffect(_=>{
      axios.get(`${process.env.NEXT_PUBLIC_baseURL}/post`).then(res => setposts(res.data))
 } ,[ ])
 
-console.log(posts);
-  return (
+
+return (
     <div className='Blog'>
       {
         posts?.data?.map((e,index)=> (
