@@ -3,11 +3,10 @@ import React, { useEffect, useState } from 'react'
 import {useRouter} from "next/navigation"
 import Link from "next/link"
 import axios from "axios"
-import { Notyf } from "notyf";
-import 'notyf/notyf.min.css';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
-    const notyf = new Notyf({position:{y:"top"}})
 
     const [Data , setData] = useState()
     const [Load , setLoad] = useState(false)
@@ -27,12 +26,12 @@ const SignUp = () => {
     useEffect(_=>{
         if(Load === false){
             if(Data?.email){
-                notyf.success("You have been registered successfully")
+                toast.success("You have been registered successfully")
                 setTimeout(() => {
                     Navigate.push("/dashboard/signin")
                 }, 1000);
             }else{
-                if(Data?.data?.Error?.message.startsWith("E11000 duplicate key error collectio")) notyf.error("this E-mail is already exist")
+                if(Data?.data?.Error?.message.startsWith("E11000 duplicate key error collectio")) toast.error("this E-mail is already exist")
             }
         }
     } ,[Load])
@@ -48,6 +47,7 @@ const SignUp = () => {
             <input style={{opacity: Load?".6" : "1"}} type="submit" className='btn' value="Sign up" />
         </form>
         <Link href="/dashboard/signin"> You have an account </Link>
+        <ToastContainer />
     </div>
   )
 }

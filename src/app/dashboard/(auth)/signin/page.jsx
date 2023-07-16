@@ -4,11 +4,10 @@ import { useRouter } from 'next/navigation'
 import {signIn, useSession} from "next-auth/react"
 import Link from 'next/link'
 import axios from 'axios'
-import { Notyf } from "notyf";
-import 'notyf/notyf.min.css';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-  const notyf = new Notyf({position:{y:"top"}})
 
   const [err , setErr] = useState(false)
   const [Load , setLoad] = useState(false)
@@ -29,13 +28,13 @@ const Login = () => {
   useEffect(_=>{
     if(Load === false){
       if(Data?.email){
-        notyf.success("You're Login")
+        toast.success("You're Login")
         setTimeout(() => {
           Navigate.push("/dashboard")
           localStorage.setItem("blog" , JSON.stringify(Data))
       }, 1000);
       }else{
-       Data?.Error?.message && notyf.error(Data?.Error?.message)
+       Data?.Error?.message && toast.error(Data?.Error?.message)
       }
     }
   } ,[Load])
@@ -49,6 +48,7 @@ const Login = () => {
             <input type="submit" className='btn' value="Sign up" />
         </form>
         <Link href="/dashboard/signup">create an acount</Link>
+        <ToastContainer/>
     </div>
   )
 }
