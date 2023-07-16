@@ -1,15 +1,15 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import axios from 'axios'
-import { Notyf } from "notyf";
-import 'notyf/notyf.min.css';
+// import { Notyf } from "notyf";
+// import 'notyf/notyf.min.css';
 
 const Dashboard = () => {
-  const notfy = new Notyf({position:{y:"top"}})
+  // const notyf = new Notyf()
+
   const config = {headers: {"Content-Type": "multipart/form-data" }}
-  const Navigate = useRouter()
   const [data , setdata] = useState()
+  const [err , seterr] = useState(false)
   const [posts , setposts] = useState()
   const [Img , setImg] = useState()
   const [load , setload] = useState(false)
@@ -25,7 +25,7 @@ const Dashboard = () => {
 
   const handleSub=async(e)=>{
     e.preventDefault()
-    if(user === null) return notfy.error("please Sign-in and try again ")
+    if(user === null) return seterr(true)
     const title = e.target[0].value
     const desc = e.target[1].value
     const content = e.target[2].value
@@ -77,6 +77,7 @@ const Dashboard = () => {
           <input onChange={handleImg} type="file" placeholder='image' className='file' />
 
           <button className='btn'>Send</button>
+          {err && <h2 className='err'>You are not registered</h2>}
         </form>
       </div>
 

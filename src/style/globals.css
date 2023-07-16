@@ -627,6 +627,14 @@ html, body {
   color: var(--btn);
 }
 
+.err {
+  color: rgba(255, 0, 0, 0.6784313725);
+  font-size: 19px;
+  font-family: cursive;
+  text-align: center;
+  font-weight: normal;
+}
+
 .theme {
   transition: 0.5s all ease;
 }
